@@ -1,1 +1,202 @@
-<!DOCTYPE html><html><head><title></title><!--link(href="/images/favicon.ico", rel="shortcut icon", type="image/x-icon")--><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/toastr.min.css"><link rel="stylesheet" href="/css/site.css"></head><body><div class="container"><h1></h1><p>Welcome to </p></div><script type="text/javascript" src="/javascripts/jquery.min.js"></script><script type="text/javascript" src="/javascripts/bootstrap.min.js"></script><script type="text/javascript" src="/javascripts/site.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="contenttype" content="text/html;charset=UTF-8" />
+    <link href="Style/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        window.cn = window.cn || {};
+
+        window.cn.ApllyTmpl = function (obj, tmlpID) {
+            "use strict";
+            var tmpl = document.getElementById(tmlpID).innerHTML;
+            if (!tmpl.replace)
+                return;
+
+            var item, useRegExp;
+            for (item in obj) {
+                if (obj.hasOwnProperty(item)) {
+                    useRegExp = new RegExp('{' + item + '}', 'g');
+                    tmpl = tmpl.replace(useRegExp, obj[item] !== null ? obj[item] : "");
+                }
+            }
+            return tmpl;
+        };
+
+        window.cf = window.cf || {};
+
+        window.cf.hlr = function (element) {
+            var hlr;
+
+            if (!(hlr = element.getAttribute('x-hlr'))) {
+                return;
+            }
+
+            var splitArray = element.getAttribute('x-hlr').split(' ');
+
+            for (var i = 0, items = splitArray.length; i < items; i++) {
+                hlr = splitArray[i];
+                if (window.cf.fn[hlr]) {
+                    window.cf.fn[hlr](element);
+                }
+            }
+        };
+        document.documentElement.addEventListener('click',
+                function(evt) {
+                    var element;
+
+                    evt.srcElement ? element = evt.srcElement : element = evt.target;
+
+                    if (!(element.getAttribute('x-hlr'))) {
+                        return;
+                    }
+                    evt.preventDefault();
+
+                    window.cf.hlr(element);
+                }, false);
+    </script>
+    <script>
+        window.cf.fn = window.cf.fn || {};
+        window.cf.fn.ViewChange = function(element) {
+
+            var viewChangeAct = element.getAttribute('x-viewChangeAct');
+
+            if (window.cf.fn.ViewChange[viewChangeAct]) {
+                window.cf.fn.ViewChange[viewChangeAct](element);
+            }
+        }
+
+        window.cf.fn.ViewChange.Details = function (element) {
+
+            var entrynumber = element.getAttribute('x-viewChangeID');
+            jQuery(".content").html(window.cn.ApllyTmpl(obj[entrynumber], "OrderDetails"));
+            for (var i = 0, max = obj[entrynumber].Lines.length; i < max; i++) {
+                jQuery(".OrderDetails__Lines").append(window.cn.ApllyTmpl(obj[entrynumber].Lines[i], "OrderDetails__Lines"));
+            }
+
+        }
+
+        window.cf.fn.ViewChange.List = function (element) {
+
+            jQuery(".content").html(window.cn.ApllyTmpl(obj[i], "OrderView"));
+            for (var i = 0, max = obj.length; i < max; i++) {
+                obj[i].index = i;
+                jQuery(".OrderView__List").append(window.cn.ApllyTmpl(obj[i], "OrderView__List"));
+            }
+
+        }
+
+    </script>
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+    <script id="OrderView" type="text/Html">
+        <table class="OrderView table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+            <tbody class="OrderView__List"></tbody>
+        </table>
+    </script>
+
+    <script id="OrderView__List" type="text/html">
+        <tr>
+            <td>{id}</td>
+            <td>{Date}</td>
+            <td>{Name}</td>
+            <td>{Address}</td>
+            <td><button class="btn btn-warning" x-hlr="ViewChange" x-viewChangeAct="Details" x-viewChangeID="{index}">View</button></td>
+        </tr>
+    </script>
+
+    <script id="OrderDetails" type="text/html">
+        <table class="OrderDetails table table-striped">
+            <tr>
+                <td>ID</td>
+                <td>{id}</td>
+                <td>NAME</td>
+                <td>{Name}</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td>{Date}</td>
+                <td>Address</td>
+                <td>{Address}</td>
+            </tr>
+            <tr>
+                <td>Required</td>
+                <td>{Required}</td>
+                <td>City</td>
+                <td>{City}</td>
+            </tr>
+            <tr>
+                <td>Shipped</td>
+                <td>{Shipped}</td>
+                <td>Zip</td>
+                <td>{Zip}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Country</td>
+                <td>{Country}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unitprice</th>
+                            <th>Quantity</th>
+                            <th>Discount</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody class="OrderDetails__Lines table table-striped"></tbody>
+                        <tfoot>
+                        <tr>
+                            <td>Total:</td>
+                            <td colspan="3">{Total}</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-success" x-hlr="ViewChange" x-viewchangeact="List">Back</button>
+    </script>
+    <script id="OrderDetails__Lines" type="text/html">
+        <tr>
+            <td>{Product}</td>
+            <td>{UnitPrice}</td>
+            <td>{Quantity}</td>
+            <td>{Discount}</td>
+            <td>{Price}</td>
+        </tr>
+    </script>
+
+</head>
+<body>
+<div class="content">
+
+</div>
+
+<script>
+    //var obj = JSON.parse('[{ "id" : "22" ,"Date" : "01/01/2000", "Name" : "Tanja", "Address" : "Somewhere" }, { "id" : "11" ,"Date" : "01/01/2000", "Name" : "Chr", "Address" : "Somewhere" }]');
+    var obj = JSON.parse('[{"id":"123", "Date":"2014-05-22", "Name":"Tanja", "Address":"Somewhere", "Required":"2014-04-19", "Shipped":"2014-05-22", "City":"Slangerup", "Zip":"3550", "Country":"Denmark", "Lines" : [{"ProductID":"22354", "Product":"Hairband", "UnitPrice":"0.75", "Quantity":"200", "Discount":"0.25", "Price":"125"}],"Total" : "1000" }]');
+
+
+    window.cf.fn.ViewChange.List();
+
+    /*
+
+     */
+</script>
+</body>
+</html>
+
+

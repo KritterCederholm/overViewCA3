@@ -1,9 +1,9 @@
 var fs = require('fs');
 var async = require('async');
 var mongoose = require('mongoose');
-var model = require('./model');
+var model = require('./../model');
 
-//var dbUrl = "mongodb://viewer:testviewer@ds049150.mongolab.com:49150/orderview";
+var dbUrl = "mongodb://viewer:testviewer@ds049150.mongolab.com:49150/orderview";
 
 
 function readData(path) {
