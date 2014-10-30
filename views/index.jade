@@ -24,7 +24,7 @@ head
                 td {Name}
                 td {Address}
                 td
-                    button.btn.btn-warning(x-hlr='ViewChange', x-viewchangeact='Details', x-viewchangeid='{index}') View
+                    button.btn.btn-warning.glyphicon.glyphicon-film(x-hlr='ViewChange', x-viewchangeact='Details', x-viewchangeid='{index}')
                 td
                     button.btn.btn-info.glyphicon.glyphicon-search(x-hlr='EditDialog', x-editDialogAct='Show', x-editDialogID='{index}')
 
@@ -84,20 +84,20 @@ head
                     td Country
                     td {Country}
                 tr
-                    td(colspan='4')
+                    td(colspan='6')
                         table
                             thead
                                 tr
-                                    th Product
-                                    th Unitprice
-                                    th Quantity
-                                    th Discount
-                                    th Price
+                                    th Product:_
+                                    th Unitprice:_
+                                    th Quantity:_
+                                    th Discount:_
+                                    th Price:_
                             tbody.OrderDetails__Lines.table.table-striped
                             tfoot
                                 tr
                                     td Total:
-                                    td(colspan='3') {Total}
+                                    td(colspan='6') {Total}
         button.btn.btn-success(x-hlr='ViewChange', x-viewchangeact='List') Back
 
     script#OrderDetails__Lines(type='text/html')
@@ -115,7 +115,7 @@ body
             .modal-content
                 .modal-header
                     button.close(x-hlr='ConfirmDelete', x-confirmDeleteAct='Close') ×
-                    h4.modal-title Modal title
+                    h4.modal-title Do you really want to do this?
                 .modal-body
                     p One fine body…
                 .modal-footer
