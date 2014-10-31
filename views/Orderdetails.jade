@@ -4,6 +4,16 @@
 extends layout
 block content
     div.container
+        h1= PeopleInvolved
+        table.table.table-bordered.table-striped
+            tr
+                th Customer
+                td= customer.contactName
+                th Empleyee
+                td= employee.firstName
+
+
+    div.container
         h1= Orderwatcher
         table.table.table-bordered.table-striped
             tr
