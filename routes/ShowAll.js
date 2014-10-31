@@ -22,3 +22,5 @@ router.get('/', function(req, res) {
             orderArray: orderArray
         });
 });
+
+module.exports = router;
