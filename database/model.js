@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbUrl = "mongodb://viewer:testviewer@ds049150.mongolab.com:49150/orderview";
+var dbUrl = "mongodb://test:testing@ds049160.mongolab.com:49160/orderview";
 var mongooseDb = mongoose.connect(dbUrl);
 
 mongooseDb.connection.once('open', function(err) {
