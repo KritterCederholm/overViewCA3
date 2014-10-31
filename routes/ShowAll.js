@@ -16,8 +16,7 @@ model.OrderModel.find().sort({'orderDate':1})
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('showAll',
-        {
+    res.render('showAll', {
             title: 'all orders',
             orderArray: orderArray
         });
