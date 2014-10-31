@@ -24,5 +24,8 @@ window.cf.fn.EditDialog.Close = function (element) {
 
 window.cf.fn.EditDialog.Save = function (element) {
     //GET DATA FROM ALL FIELDS AND AJAX
+    var obj = window.cf.gVar.json;
+    $.post()
+
 
 }

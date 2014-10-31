@@ -1,0 +1,21 @@
+//
+   Created by christoffer on 29-10-2014.
+
+extends layout
+block content
+    div.container
+        h1= title
+        table.table.table-striped.table-hover.tableSorter
+            tr
+                th Order Id
+                th Date
+                th Name
+                th Address
+            -if (orderArray.length) {
+            -orderArray.forEach(function(orders) {
+            tr
+                td: a(href='/orderDetails/'+ orders._id)= orders._id
+                td= orders.orderDate
+                td= orders.shipName
+                td= orders.shipAddress
+            -});}

@@ -1,0 +1,57 @@
+//
+   Created by christoffer on 31-10-2014.
+
+extends layout
+block content
+    div.container
+        h1= Orderwatcher
+            table.table.table-bordered.table-striped
+                tr
+                    th Order Id
+                    th Name
+                    th Address
+                    th City
+                    th Zip
+                    th Country
+                    th Date
+                    th Required
+                    th Shipped
+                //each orders in orderById
+                -if (orderById.length) {
+                -orderById.forEach(function(orders) {
+                    tr
+                        td= orders._id
+                        td= orders.orderDate
+                        td= orders.shipName
+                        td= orders.shipAddress
+                        td= orders.requiredDate
+                        td= orders.shippedDate
+                        td= orders.shipCity
+                        td= orders.shipPostalCode
+                        td= orders.shipCountry
+                -});}
+    div.container
+        h1= Orderwatcher
+            table.table.table-bordered.table-striped
+                tr
+                    th Product
+                    th Unitprice
+                    th Quantity
+                    th Discount
+                    th Price
+                each detail in detailsById
+                    tr
+                        td= detail.product.name
+                        td= detail.unitPrice
+                        td= detail.quantity
+                        td= detail.discount
+                        //vi har taget det som om at discount er udregnet i kroner, og derfor ikke er et procent tal
+                        td= (detail.unitprice - detail.discount) * detail.quantity
+                    tr
+                        td
+                        td
+                        td
+                        td
+                        td= total
+    div.container.buttom
+        a(href='/ShowAll'): btn.btn-succes.btn back
