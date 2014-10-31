@@ -25,4 +25,5 @@ window.cf.fn.ConfirmDelete.Close = function (element) {
 window.cf.fn.ConfirmDelete.Confirm = function (element) {
     //AJAX
 
+
 }

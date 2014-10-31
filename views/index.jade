@@ -3,12 +3,14 @@ head
     title
     meta(http-equiv='contenttype', content='text/html;charset=UTF-8')
     link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/site.css', rel='stylesheet')
 
     script(src='javascripts/jquery.min.js')
     script(src='javascripts/foundation.js')
     script(src='javascripts/ConfirmDelete.js')
     script(src='javascripts/EditDialog.js')
     script#OrderView(type='text/Html')
+
         table.OrderView.table.table-striped
             thead
                 tr
@@ -26,7 +28,7 @@ head
                 td
                     button.btn.btn-warning.glyphicon.glyphicon-film(x-hlr='ViewChange', x-viewchangeact='Details', x-viewchangeid='{index}')
                 td
-                    button.btn.btn-info.glyphicon.glyphicon-search(x-hlr='EditDialog', x-editDialogAct='Show', x-editDialogID='{index}')
+                    button.btn.btn-info.glyphicon.glyphicon-pencil(x-hlr='EditDialog', x-editDialogAct='Show', x-editDialogID='{index}')
 
                 td
                     button.btn.btn-success.glyphicon.glyphicon-trash(x-hlr='ConfirmDelete', x-confirmDeleteAct='Show', x-confirmDeleteid='{index}')
