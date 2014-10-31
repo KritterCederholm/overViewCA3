@@ -18,7 +18,7 @@ model.OrderModel.find().sort({'orderDate':1})
 router.get('/', function(req, res) {
     res.render('showAll',
         {
-            title: 'Here are all orders',
+            title: 'all orders',
             orderArray: orderArray
         });
 });
