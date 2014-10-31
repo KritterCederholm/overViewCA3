@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'MongoDB Viewer' });
+  res.render('index', { title: 'CA 3 MEB Application' });
 });
 
 module.exports = router;

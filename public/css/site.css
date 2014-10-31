@@ -1,4 +1,16 @@
-body .modal-dialog{
-    width: 700px;
-    height: auto;
+body{
+
 }
+
+.container{
+
+}
+
+
+p.git a{
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+

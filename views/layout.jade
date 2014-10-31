@@ -4,9 +4,11 @@ html
     title= title
     //link(href="/images/favicon.ico", rel="shortcut icon", type="image/x-icon")
     link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://bootswatch.com/spacelab/bootstrap.min.css')
     link(rel='stylesheet', href='/css/toastr.min.css')
-    link(rel='stylesheet', href='/css/site.css')
+    link(href='/css/site.css',rel='stylesheet')
   body
+    include menu
     block menu
     block content
     block footer
