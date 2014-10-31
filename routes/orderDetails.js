@@ -7,12 +7,16 @@ var router = express.Router();
 var orderById = {};
 var detailsById = {};
 var total = 0;
+var customerById;
+var employeeById;
 
 router.get('/:id', function(req, res) {
     function sending() {
         res.render('orderDetails',
             {
                 title: 'Order Details',
+                customer: customerById,
+                employee: employeeById,
                 orderById: orderById,
                 detailsById: detailsById,
                 total: total
@@ -24,6 +28,17 @@ router.get('/:id', function(req, res) {
         .exec(function (err, order) {
             orderById = order;
         });
+
+    model.OrderModel.find({ customer: requestedId})
+        .exec(function (err, customer){
+            customerById = customer;
+        });
+
+    model.OrderModel.find({ employee: requestedId})
+        .exec(function (err, employee){
+            employeeById = employee;
+        });
+
     model.DetailsModel.find({ order: requestedId})
         .populate('product')
         .exec(function(err, orderDetails) {
