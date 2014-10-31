@@ -1,4 +1,11 @@
 var mongoose = require('mongoose');
+var dbUrl = "mongodb://viewer:testviewer@ds049150.mongolab.com:49150/orderview";
+var mongooseDb = mongoose.connect(dbUrl);
+
+mongooseDb.connection.once('open', function(err) {
+    console.log(err);
+    console.log("connected");
+});
 
 var CategorySchema = mongoose.Schema({
     _id: Number,
